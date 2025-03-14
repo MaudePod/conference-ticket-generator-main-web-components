@@ -1,0 +1,146 @@
+:root {
+
+    --neutral-0: hsl(0, 0%, 100%);
+    --neutral-300: hsl(252, 6%, 83%);
+    --neutral-500: hsl(245, 15%, 58%);
+    --neutral-700: hsl(245, 19%, 35%);
+    --neutral-900: hsl(248, 70%, 10%);
+
+    --orange-500: hsl(7, 88%, 67%);
+    --orange-700: hsl(7, 71%, 60%);
+
+    --gradient-text: linear-gradient(to right, hsl(7, 86%, 67%), hsl(0, 0%, 100%));
+}
+
+@font-face {
+    font-family: "Inconsolata";
+    src: url(./assets/fonts/Inconsolata-VariableFont_wdth\,wght.ttf);
+}
+
+body {
+    display: grid;
+    max-width: 100svw;
+    min-height: 100svh;
+    container: body / inline-size;
+    margin: 0;
+    font-family: "Inconsolata";
+    color: var(--neutral-0);
+    background-image: url(./assets/images/background-desktop.png);
+    background-size: cover;
+    position: relative;
+    z-index: -2;
+}
+
+main {
+    display: grid;
+    max-width: 100cqw;
+    height: 100cqh;
+    background-image: url(./assets/images/pattern-lines.svg);
+    background-size: cover;
+    align-content: start;
+    justify-items: center;
+    gap: 10px;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content;
+    position: relative;
+    z-index: -1;
+}
+
+main::before {
+    content: url(./assets/images/pattern-squiggly-line-top.svg);
+    position: absolute;
+    right: 0;
+    top: 50px;
+}
+
+main::after {
+    content: url(./assets/images/pattern-squiggly-line-bottom.svg);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+img[class="logo"] {
+    margin-top: 30px;
+}
+
+h1 {
+    font-size: 3em;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0 20%;
+    font-weight: 800;
+    margin: 0;
+}
+
+header {
+    display: contents;
+}
+
+header[class="ready"] {
+    display: none;
+}
+
+span[id="name"] {
+    background: var(--gradient-text);
+    background-clip: text;
+    color: transparent;
+}
+
+span[id="email-address"] {
+    color: var(--orange-500);
+    font-weight: 400;
+}
+
+h2 {
+    color: var(--neutral-500);
+    font-weight: 700;
+}
+
+
+body:has(generate-ticket-form[form="complete"]) main{
+    header {
+        display: none;
+    }
+}
+div[class="attribution"] {
+    position: absolute;
+    bottom: 5px;
+    left: 0px;
+    right: 0px;
+    color: white;
+    z-index: -1;
+}
+
+@container(inline-size < 1000px) {
+    main {
+        height: auto;
+    }
+
+    main::before {
+        right: -45%;
+        top: -60px;
+        transform: scale(20%);
+    }
+
+    main::after {
+        left: -55%;
+        bottom: -20%;
+        transform: scale(40%);
+    }
+
+    h1 {
+        font-size: 1.8em;
+        box-sizing: border-box;
+        padding: 0 5%;
+    }
+
+    h2 {
+        box-sizing: border-box;
+        padding: 0 5%;
+        font-size: 1.2em;
+        text-align: center;
+    }
+
+}

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Frontend Mentor | Conference ticket generator">
+
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <script type="module" src="main.js" defer></script>
+
+  <title>Frontend Mentor | Conference ticket generator</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <img src="./assets/images/logo-full.svg" alt="Logo" class="logo">
+    <header class="default">
+      <h1>
+        Your Journey to Coding Conf 2025 Starts Here!
+      </h1>
+      <h2>
+        Secure your spot at next year's biggest coding conference.
+      </h2>
+    </header>
+    <header class="ready">
+      <h1>
+        Congrats, <span id="name">Jonatan Kristof<!-- Full Name --></span>! Your ticket is ready.
+      </h1>
+      <h2>
+        We've emailed your ticket to <span id="email-address"><!-- Email Address -->jonatan@email.com</span> and will
+        send updates in the run up to the event.
+      </h2>
+
+    </header>
+    <!-- Form starts -->
+
+    <generate-ticket-form>
+      <template shadowrootmode="open">
+        <section class="form-container">
+          <form action="" enctype="multipart/form-data">
+            <label for="upload-avatar">
+              Upload Avatar
+              <section class="upload-instructions">
+                <img src="./assets/images/icon-upload.svg" alt="Upload">
+                <p>
+                  Drag and drop or click to upload
+                </p>
+              </section>
+              <section class="view-uploaded-img">
+                <img src="./assets/images/icon-upload.svg" alt="Uploaded Image" id="uploaded-img">
+                <section class="edit-upload">
+                  <button id="remove-img">Remove image</button>
+                  <button id="change-img">Change image</button>
+                </section>
+              </section>
+              <input type="file" name="upload-avatar" id="upload-avatar" accept=".jpg, .jpeg, .png" required>
+            </label>
+            <label for="name">Full Name
+              <input type="text" name="name" id="name" required>
+            </label>
+            <label for="email">Email Address
+              <input type="email" name="email" id="email" placeholder="example@email.com" required>
+            </label>
+            <label for="username">GitHub Username
+              <input type="text" name="username" id="username" placeholder="@yourusername" required>
+            </label>
+            <button id="generate">Generate My Ticket</button>
+            <label for="invalid-form">Generate My Ticket
+              <input type="checkbox" id="invalid-form">
+            </label>
+          </form>
+        </section>
+
+        <section class="ticket">
+          <section class="ticket-info">
+            <section class="ticket-venue">
+              <img src="./assets/images/logo-mark.svg" alt="Logo">
+              <span class="logo">
+                Coding Conf
+              </span>
+              <span class="place">
+                Jan 31, 2025 / Austin, TX
+              </span>
+            </section>
+            <section class="ticket-owner">
+              <img src="./assets/images/icon-upload.svg" alt="Uploaded Image" id="uploaded-img-ticket">
+              <span class="fullname"></span>
+              <span class="email">
+                <img src="./assets/images/icon-github.svg" alt="Github icon">
+                <span class="git-hub-username"></span>
+              </span>
+            </section>
+          </section>
+          <section class="ticket-number">
+            <span>
+              #01609
+            </span>
+          </section>
+        </section>
+
+
+        <style>
+          section[class="form-container"] {
+            display: contents;
+          }
+
+          form {
+            display: grid;
+            gap: 30px;
+            position: relative;
+          }
+
+          form::after {
+            content: url(./assets/images/pattern-circle.svg);
+            position: absolute;
+            right: -50%;
+            top: 25%;
+            z-index: -1;
+          }
+
+
+          label {
+            display: grid;
+            font-weight: 700;
+            gap: 10px;
+          }
+
+          img[id="uploaded-img"],
+          section[class="upload-instructions"] img {
+            color: var(--neutral-500);
+            background-color: var(--neutral-700);
+            font-weight: 700;
+            border: 1px solid var(--neutral-700);
+            padding: 5px;
+            border-radius: 10px;
+            margin-top: 10px;
+          }
+
+          img[id="uploaded-img"] {
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+          }
+
+          img[id="uploaded-img"]:hover {
+            scale: 10;
+            border-radius: 0;
+            border: 0;
+          }
+
+          input:focus {
+            outline-color: var(--neutral-900);
+          }
+
+          input:hover {
+            background-color: var(--neutral-700);
+
+          }
+
+          ::placeholder {
+            color: var(--neutral-300);
+            font-weight: 400;
+          }
+
+          button:hover {
+            cursor: pointer;
+          }
+
+          section[class="view-uploaded-img"],
+          section[class="upload-instructions"] {
+            display: grid;
+            place-items: center;
+            height: min-content;
+            background-color: var(--neutral-900);
+            appearance: none;
+            border-style: dashed;
+            border-radius: 10px;
+            color: var(--neutral-500);
+            font-weight: 800;
+            padding: 10px 0;
+            font-size: 1.2em;
+          }
+
+          section[class="upload-instructions"] {
+            cursor: pointer;
+          }
+
+          section[class="view-uploaded-img"] {
+            display: none;
+          }
+
+          section[class="edit-upload"] {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: min-content;
+            align-self: center;
+            gap: 10px;
+            margin: 10px 0px;
+          }
+
+          section[class="edit-upload"] button {
+            background-color: var(--neutral-700);
+            color: white;
+            width: min-content;
+            text-wrap: nowrap;
+            padding: 5px;
+            border-radius: 5px;
+            border-width: thin;
+          }
+
+          section[class="edit-upload"] button:nth-of-type(1) {
+            text-decoration: underline;
+          }
+
+          img[id="uploaded-img"],
+          section[class="upload-instructions"] img {
+            color: var(--neutral-500);
+            background-color: var(--neutral-700);
+            font-weight: 700;
+            border: 1px solid var(--neutral-700);
+            padding: 5px;
+            border-radius: 10px;
+          }
+
+          input[id="upload-avatar"] {
+            display: none;
+          }
+
+          label:has(input[type="file"])::after {
+            content: url(./assets/images/icon-info.svg) " Upload your photo (JPG or PNG, max size: 500KB).";
+            color: var(--neutral-500);
+          }
+
+          label:has(input:user-invalid) input {
+            border: 0.001px solid var(--orange-500);
+          }
+
+          label:has(input:user-invalid)::after {
+            content: url(./assets/images/icon-info-red.svg) " Please complete this field";
+            color: var(--orange-500);
+          }
+
+          label:has(input[type="email"]:not(:placeholder-shown):user-invalid)::after {
+            content: url(./assets/images/icon-info-red.svg) " Please enter a valid email address";
+            color: var(--orange-500);
+          }
+
+          label:has(input[max-size="invalid"])::after {
+            content: url(./assets/images/icon-info-red.svg) " File too large. Please upload a photo under 500KB";
+            color: var(--orange-500);
+            height: 100%;
+          }
+
+          label[for="invalid-form"],
+          button[id="generate"] {
+            display: grid;
+            height: 50px;
+            place-items: center;
+            font-size: 1.2em;
+            border-radius: 10px;
+            background-color: var(--orange-500);
+            color: var(--neutral-900);
+            border-color: transparent;
+            cursor: pointer;
+            font-weight: 700;
+          }
+
+          form:has(:invalid) {
+            button[id="generate"] {
+              display: none;
+            }
+          }
+
+          section[class="form-container"]:has(form:valid) {
+            label[for="invalid-form"] {
+              display: none;
+            }
+          }
+
+          input[id="invalid-form"] {
+            display: none;
+          }
+
+          section[class="form-container"]:has(input:checked):has(form:invalid) {
+            label:not(label[for="invalid-form"]):has(input:invalid) input {
+              border: 0.001px solid var(--orange-500);
+              transition: ease-in 0.5s;
+              transition-delay: 1.5s;
+            }
+
+            label:not(label[for="invalid-form"])::after {
+              content: url(./assets/images/icon-info-red.svg) " Please complete this field";
+              color: var(--orange-500);
+              display: grid;
+              align-items: center;
+              height: 100%;
+              transition: ease-in 0.5s;
+            }
+
+            label:has(input[max-size="invalid"]:user-invalid)::after {
+              content: url(./assets/images/icon-info-red.svg) " File too large. Please upload a photo under 500KB";
+              color: var(--orange-500);
+              display: grid;
+              align-items: center;
+              height: 100%;
+            }
+
+            label:not(label[for="invalid-form"]):nth-of-type(2)::after {
+              transition-delay: 0.5s;
+            }
+
+            label:not(label[for="invalid-form"]):nth-of-type(3)::after {
+              transition-delay: 1s;
+            }
+
+            label:not(label[for="invalid-form"]):nth-of-type(4)::after {
+              transition-delay: 1.5s;
+            }
+
+            input[type="email"]:not(:placeholder-shown):user-invalid::after {
+              content: url(./assets/images/icon-info-red.svg) " Please enter a valid email address";
+              color: var(--orange-500);
+              display: grid;
+              align-items: center;
+              height: 100%;
+            }
+
+            form {
+              gap: 0px;
+            }
+          }
+
+          section[class="ticket"] {
+            display: none;
+            grid-template-columns: 85% auto;
+            place-items: center;
+            background-image: url(./assets/images/pattern-ticket.svg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 600px;
+            height: 280px;
+          }
+
+          section[class="ticket-info"] {
+            display: grid;
+            grid-template-rows: 40% 60%;
+            align-content: space-around;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 43px;
+          }
+
+          section[class="ticket-venue"] {
+            display: grid;
+            grid-template-areas: "logo logo-title" "... place";
+            align-self: start;
+            align-items: center;
+            column-gap: 10px;
+            grid-template-columns: min-content;
+          }
+
+          section[class="ticket-venue"] img {
+            grid-area: logo;
+          }
+
+          span[class="logo"] {
+            grid-area: logo-title;
+            font-size: 2em;
+            font-weight: 700;
+            color: white;
+          }
+
+          span[class="place"] {
+            grid-area: place;
+          }
+
+          section[class="ticket-owner"] {
+            display: grid;
+            grid-template-areas: "uploaded-img-ticket fullname" "uploaded-img-ticket email";
+            grid-template-columns: min-content;
+            align-self: end;
+            align-items: center;
+            column-gap: 10px;
+          }
+
+          img[id="uploaded-img-ticket"] {
+            grid-area: uploaded-img-ticket;
+            width: 150px;
+            height: 80%;
+            object-fit: cover;
+            border-radius: 10px;
+          }
+
+          span[class="fullname"] {
+            grid-area: fullname;
+            align-self: end;
+          }
+
+          span[class="email"] {
+            display: flex;
+            gap: 10px;
+            grid-area: email;
+            align-self: start;
+          }
+
+          span[class="email"] img {
+            border-radius: 10px;
+          }
+
+          section[class="ticket-number"] {
+            writing-mode: vertical-lr;
+            font-size: 2.5em;
+            color: var(--neutral-500);
+          }
+
+          @starting-style {
+            label:not(label[for="invalid-form"]):after {
+              opacity: 0;
+            }
+          }
+
+
+          @container(inline-size < 1000px) {
+            form {
+              width: 90cqw;
+              margin-bottom: 50px;
+            }
+
+            form::after {
+              right: -35%;
+              top: 30%;
+              transform: scale(40%);
+            }
+
+            section[class="ticket"] {
+              width: 90cqw;
+            }
+
+          }
+        </style>
+      </template>
+    </generate-ticket-form>
+
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+      Coded by <a href="https://github.com/MaudePod">Maude Pod</a>.
+    </div>
+    <!-- Form ends -->
+  </main>
+
+
+
+
+
+
+</body>
+
+</html>
