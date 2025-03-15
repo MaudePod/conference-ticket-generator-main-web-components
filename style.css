@@ -65,44 +65,24 @@ img[class="logo"] {
     margin-top: 30px;
 }
 
-h1 {
-    font-size: 3em;
-    text-align: center;
-    box-sizing: border-box;
-    padding: 0 20%;
-    font-weight: 800;
-    margin: 0;
-}
-
-header {
-    display: contents;
-}
-
-header[class="ready"] {
+ticket-component,
+ready-header-component {
     display: none;
 }
 
-span[id="name"] {
-    background: var(--gradient-text);
-    background-clip: text;
-    color: transparent;
-}
-
-span[id="email-address"] {
-    color: var(--orange-500);
-    font-weight: 400;
-}
-
-h2 {
-    color: var(--neutral-500);
-    font-weight: 700;
-}
-
-
 body:has(generate-ticket-form[form="complete"]) main{
-    header {
+    default-header-component {
         display: none;
     }
+    generate-ticket-form {
+        display: none;
+    }
+    ready-header-component {
+        display: grid;
+    }
+    ticket-component{
+        display: grid;
+    }    
 }
 div[class="attribution"] {
     position: absolute;
@@ -129,18 +109,10 @@ div[class="attribution"] {
         bottom: -20%;
         transform: scale(40%);
     }
+}
 
-    h1 {
-        font-size: 1.8em;
-        box-sizing: border-box;
-        padding: 0 5%;
+@media(width < 1000px){
+    body {
+        background-image: url(./assets/images/background-mobile.png);
     }
-
-    h2 {
-        box-sizing: border-box;
-        padding: 0 5%;
-        font-size: 1.2em;
-        text-align: center;
-    }
-
 }

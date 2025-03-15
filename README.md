@@ -1,3 +1,4 @@
+[View Solution](https://maudepod.github.io/conference-ticket-generator-main-web-components/)  
 # Frontend Mentor - Conference ticket generator
 
 ![Design preview for the Conference ticket generator coding challenge](./preview.jpg)
