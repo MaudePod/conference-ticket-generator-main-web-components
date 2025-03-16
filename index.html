@@ -411,19 +411,19 @@
               transition-delay: 1s;
             }
 
-            label:not(label[for="invalid-form"]):has(input:invalid):nth-of-type(2)::after {
+            label:not(label[for="invalid-form"]):not(label[for="upload-avatar"]):has(input:invalid):nth-of-type(2)::after {
               transition-delay: 1.5s;
             }
 
-            label:not(label[for="invalid-form"]):has(input:invalid):nth-of-type(3)::after {
+            label:not(label[for="invalid-form"]):not(label[for="upload-avatar"]):has(input:invalid):nth-of-type(3)::after {
               transition-delay: 2s;
             }
 
-            label:not(label[for="invalid-form"]):has(input:invalid):nth-of-type(4)::after {
+            label:not(label[for="invalid-form"]):not(label[for="upload-avatar"]):has(input:invalid):nth-of-type(4)::after {
               transition-delay: 2.5s;
             }
 
-            label:has(input[type="email"]:not(:placeholder-shown):user-invalid)::after {
+            label:has(input[type="email"]:not(label[for="upload-avatar"]):not(:placeholder-shown):user-invalid)::after {
               content: url(./assets/images/icon-info-red.svg) " Please enter a valid email address";
               color: var(--orange-500);
               transition-delay: 2s;
